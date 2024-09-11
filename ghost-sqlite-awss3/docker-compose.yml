@@ -1,0 +1,26 @@
+version: "3.1"
+
+services:
+  ghost:
+    # image: ghost:5-alpine
+    build: .
+    restart: always
+    ports:
+      - 8080:2368
+    volumes:
+      - ./db:/var/lib/ghost/content/data
+    env_file:
+      - .env
+    # environment:
+    #   database__client: sqlite3
+    #   database__connection__filename: /var/lib/ghost/content/data/ghost.db
+    #   storage__active: s3
+    #   storage__s3__accessKeyId: dcd6cb74ac00253480b58dd6a3eb1fc3
+    #   storage__s3__secretAccessKey: 5c2ab3b41bc0aed2f0bafe8f0a927c2342e6354c01f4df54dd2274100a48978f
+    #   storage__s3__region: auto
+    #   storage__s3__bucket: weekly
+    #   storage__s3__assetHost: https://image.getgot.one
+    #   storage__s3__endpoint: https://c5fc6360e098a2aa0b1117e4a45a7aca.r2.cloudflarestorage.com
+    #   storage__s3__forcePathStyle: true
+    #   url: http://localhost:8080
+    # url: https://fdeb.noderunner.ninja

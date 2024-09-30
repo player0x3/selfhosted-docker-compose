@@ -11,6 +11,20 @@ services:
       - ./db:/var/lib/ghost/content/data
     env_file:
       - .env
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./mysql_config:/etc/mysql/conf.d
+    env_file:
+      - .env
+    command: --default-authentication-plugin=mysql_native_password
+
     # environment:
     #   database__client: sqlite3
     #   database__connection__filename: /var/lib/ghost/content/data/ghost.db
